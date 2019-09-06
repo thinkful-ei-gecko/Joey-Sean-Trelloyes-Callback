@@ -15,8 +15,9 @@ class App extends Component {
     lists: STORE.lists,
     cards: STORE.cards
   }
-  handleDelete(){
-    console.log('delete was called')
+  handleDelete=(id)=>{
+    console.log(id,'delete was called')
+
   };
 
   render() {
