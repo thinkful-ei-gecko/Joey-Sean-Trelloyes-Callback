@@ -43,7 +43,7 @@ class App extends Component {
       + Math.random().toString(36).substring(2, 4);
     return {
       id,
-      title: `Random Card ${id}`,
+      title: `${id} Card`,
       content: 'lorem ipsum',
     }
   }
