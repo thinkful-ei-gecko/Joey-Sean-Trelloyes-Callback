@@ -15,10 +15,29 @@ class App extends Component {
     lists: STORE.lists,
     cards: STORE.cards
   }
-  handleDelete=(id)=>{
-    console.log(id,'delete was called')
+  
 
+  handleDelete=(listId,cardId)=>{
+    console.log(listId, cardId)
+    const newLists = this.state.lists.map(list =>{
+      if(list.id === listId){
+        const filteredCardIds = list.cardsIds.filter(listCardId => listCardId !== cardId);
+        return{...list, cardIds: filteredCardIds}
+      }
+      return list;
+    })
+    this.omit(listId, cardId)
+    this.setState({lists: newLists})
+
+  
   };
+  omit = (obj, keyToOmit) => {
+    return Object.entries(obj).reduce(
+      (newObj, [key, value]) =>
+          key === keyToOmit ? newObj : {...newObj, [key]: value},
+      {}
+    );
+  }
 
   render() {
     const { store } = this.props
@@ -30,6 +49,7 @@ class App extends Component {
         <div className='App-list'>
           {store.lists.map(list => (
             <List
+              id ={list.id}
               key={list.id}
               header={list.header}
               cards={list.cardIds.map(id => store.allCards[id])}
