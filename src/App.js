@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import List from './List'
 import './App.css';
+import STORE from './STORE';
 
 class App extends Component {
 
@@ -10,6 +11,10 @@ class App extends Component {
       allCards: {},
     }
   };
+  state ={
+    lists: STORE.lists,
+    cards: STORE.cards
+  }
   handleDelete(){
     console.log('delete was called')
   };
