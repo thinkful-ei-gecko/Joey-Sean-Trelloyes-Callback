@@ -3,11 +3,15 @@ import List from './List'
 import './App.css';
 
 class App extends Component {
+
   static defaultProps = {
     store: {
       lists: [],
       allCards: {},
     }
+  };
+  handleDelete(){
+    console.log('delete was called')
   };
 
   render() {
@@ -23,6 +27,7 @@ class App extends Component {
               key={list.id}
               header={list.header}
               cards={list.cardIds.map(id => store.allCards[id])}
+              onDeleteItem={this.handleDelete}
             />
           ))}
         </div>
